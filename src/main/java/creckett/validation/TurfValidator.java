@@ -6,6 +6,8 @@ package creckett.validation;
  */
 
 import creckett.model.Turf;
+
+import creckett.utils.HelperFunctions;
 import creckett.validation.exceptions.InvalidTurfException;
 
 public class TurfValidator extends FeatureValidator {
@@ -34,7 +36,15 @@ public class TurfValidator extends FeatureValidator {
 
 //  Method for validate all
 	public boolean validateAll() throws InvalidTurfException {
+		
 		return validImage(turf.getImage()) && validMessage(turf.getMessage());
 	}
+	
+//	boolean validImage(String imageURL) {
+//		HelperFunctions.validURL(imageURL);
+////		throw
+//		return true;
+//		
+//	}
 
 }

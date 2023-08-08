@@ -20,7 +20,7 @@ class TestPhoneNumberValidation {
 		UserValidator userValidator = new UserValidator();
 		try {
 			System.out.println("Your mobile number is correct");
-			assertTrue(userValidator.validNumber("9876543210"));
+			assertTrue(userValidator.validPhoneNumber("9876543210"));
 		} catch (InvalidUserException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -33,7 +33,7 @@ class TestPhoneNumberValidation {
 		UserValidator userValidator = new UserValidator();
 		try {
 			System.out.println("Mobile number should be in 10 digits only");
-			assertFalse(userValidator.validNumber("987654321"));
+			assertFalse(userValidator.validPhoneNumber("987654321"));
 		} catch (InvalidUserException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -46,7 +46,7 @@ class TestPhoneNumberValidation {
 		UserValidator userValidator = new UserValidator();
 		try {
 			System.out.println("Mobile number contains 10 digits only");
-			assertFalse(userValidator.validNumber("98765432101"));
+			assertFalse(userValidator.validPhoneNumber("98765432101"));
 		} catch (InvalidUserException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -59,7 +59,7 @@ class TestPhoneNumberValidation {
 		UserValidator userValidator = new UserValidator();
 		try {
 			System.out.println("Mobile number do not start with 5 ");
-			assertFalse(userValidator.validNumber("5678901234"));
+			assertFalse(userValidator.validPhoneNumber("5678901234"));
 		} catch (InvalidUserException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -72,7 +72,7 @@ class TestPhoneNumberValidation {
 		UserValidator userValidator = new UserValidator();
 		try {
 			System.out.println("Mobile number contains integer");
-			assertFalse(userValidator.validNumber("9876a43210"));
+			assertFalse(userValidator.validPhoneNumber("9876a43210"));
 		} catch (InvalidUserException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -87,7 +87,7 @@ class TestPhoneNumberValidation {
 		UserValidator userValidator = new UserValidator();
 		try {
 			System.out.println("Mobile number do not start with 0 ");
-			assertFalse(userValidator.validNumber("0123456789"));
+			assertFalse(userValidator.validPhoneNumber("0123456789"));
 		} catch (InvalidUserException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

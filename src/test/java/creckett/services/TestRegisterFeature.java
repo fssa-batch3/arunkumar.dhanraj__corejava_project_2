@@ -6,6 +6,7 @@ package creckett.services;
  */
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
@@ -18,7 +19,7 @@ import creckett.services.exceptions.ServiceException;
 
 class TestRegisterFeature {
 
-//	test by by correct input
+//	test by correct input
 	@Test
 	void testRegisterSuccess() {
 		UserService service = new UserService();
@@ -29,10 +30,11 @@ class TestRegisterFeature {
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
+			fail();
 		}
 	}
 
-//	test by by incorrect input
+//	test by incorrect input
 	@Test
 	void testRegisterFail() {
 		UserService service = new UserService();

@@ -5,27 +5,39 @@ package creckett.dao;
 
  *
  */
-
-import java.sql.*;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import creckett.dao.exceptions.DAOException;
 import creckett.model.User;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class UserDAO {
 
 // Getting Connection
-	public static Connection connect() throws DAOException {
+	public static Connection connect() throws SQLException {
 
-		Connection connect = null;
+		String dbURL;
+		String dbUser;
+		String dbPassword;
 
-		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/corejava", "root", "123456");
-		} catch (SQLException e) {
-			throw new DAOException("Error in connection", e);
+		if (System.getenv("CI") != null) {
+			dbURL = System.getenv("DB_URL");
+			dbUser = System.getenv("DB_USER");
+			dbPassword = System.getenv("DB_PASSWORD");
+		} else {
+			Dotenv env = Dotenv.load();
+			dbURL = env.get("DB_URL");
+			dbUser = env.get("DB_USER");
+			dbPassword = env.get("DB_PASSWORD");
 		}
-		return connect;
+
+		return DriverManager.getConnection(dbURL, dbUser, dbPassword);
 
 	}
 
@@ -157,5 +169,4 @@ public class UserDAO {
 
 	}
 
-	
 }

@@ -40,6 +40,7 @@ class TestTurfValidation {
 			assertFalse(validate.validateAll());
 		} catch (InvalidTurfException e) {
 			e.printStackTrace();
+			
 		}
 
 	}
@@ -47,7 +48,7 @@ class TestTurfValidation {
 	@Test
 	void testTurfDetailsFailure() {
 
-		Turf turf = new Turf("https://www.example.com", "Chennai");
+		Turf turf = new Turf("https://www.example.com", "Chen");
 		TurfValidator validate = new TurfValidator(turf);
 
 		try {

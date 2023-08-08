@@ -18,7 +18,7 @@ public class UserValidator {
 
 	public boolean validateUser(User user) throws InvalidUserException {
 
-		return validName(user.getName()) && validNumber(user.getPhonenumber()) && validPassword(user.getPassword())
+		return validName(user.getName()) && validPhoneNumber(user.getPhonenumber()) && validPassword(user.getPassword())
 				&& validEmail(user.getEmail()) && isEmailExists(user.getEmail())
 				&& isNumberExists(user.getPhonenumber());
 
@@ -40,7 +40,7 @@ public class UserValidator {
 	}
 
 //	validating phonenumber
-	public boolean validNumber(String number) throws InvalidUserException {
+	public boolean validPhoneNumber(String number) throws InvalidUserException {
 
 		String regex = "^[6-9]\\d{9}$";
 		Pattern pattern = Pattern.compile(regex);

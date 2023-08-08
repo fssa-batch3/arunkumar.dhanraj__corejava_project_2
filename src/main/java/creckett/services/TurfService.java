@@ -20,15 +20,15 @@ public class TurfService {
 		TurfDAO turfDAO = new TurfDAO();
 
 		try {
-			if (turfValidator.validateAll()) {
-				if (turfDAO.createTurf(turf)) {
-					return true;
-				}
-			}
+			
+			turfValidator.validateAll();
+			turfDAO.createTurf(turf);
+
 		} catch (InvalidTurfException | DAOException e) {
 			throw new ServiceException("Error in hosting a turf in service", e);
 		}
-		return false;
+		
+		return true;
 
 	}
 

@@ -29,7 +29,7 @@ public abstract class FeatureValidator {
 //  Validation for the message
 	protected boolean validMessage(String message) throws InvalidTurfException {
 
-		if (message.length() < 5 || message.trim().isEmpty() || message.trim().length() < 5)
+		if ( message.trim().isEmpty() || message.trim().length() < 5)
 			throw new InvalidTurfException("Error in validating the message");
 		else
 			return true;

@@ -8,13 +8,17 @@
 	<name>creckett</name>
 	<description>Booking turfs, Opponents and posting requirements </description>
 
-<properties>
+	<properties>
 		<java.version>17</java.version>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
-		
-		<sonar.organization>fssa_batch3</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+
+		<sonar.organization>fssa-batch3</sonar.organization>
+		<sonar.host.url> https://sonarcloud.io</sonar.host.url>
+		<sonar.projectKey>fssa-batch3_arunkumar_dhanraj_corejava_project_2</sonar.projectKey>
+
+
 	</properties>
 
 	<dependencies>
@@ -33,8 +37,8 @@
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>5.9.1</version>
 		</dependency>
-		
-			<!-- JUnit Jupiter engine for running tests -->
+
+		<!-- JUnit Jupiter engine for running tests -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
@@ -53,7 +57,19 @@
 			<artifactId>template</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+
+		<!--  Maven repository dependency -->
+		<!--<https://mvnrepository.com/artifact/io.github.cdimascio/java-dotenv> -->
+
+		<dependency>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>java-dotenv</artifactId>
+			<version>5.2.2</version>
+		</dependency>
+
+
 	</dependencies>
-	
-	
+
+
 </project>
