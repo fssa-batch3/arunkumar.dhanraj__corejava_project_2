@@ -25,6 +25,11 @@ public class UserDAO {
 		String dbURL;
 		String dbUser;
 		String dbPassword;
+		
+		
+		
+		
+		
 
 		if (System.getenv("CI") != null) {
 			dbURL = System.getenv("DB_URL");
