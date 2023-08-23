@@ -12,10 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
-import creckett.model.User;
-import creckett.dao.UserDAO;
-import creckett.dao.exceptions.DAOException;
-import creckett.services.exceptions.ServiceException;
+import com.fssa.creckett.dao.UserDAO;
+import com.fssa.creckett.dao.exceptions.DAOException;
+import com.fssa.creckett.model.User;
+import com.fssa.creckett.services.UserService;
+import com.fssa.creckett.services.exceptions.ServiceException;
 
 class TestRegisterFeature {
 

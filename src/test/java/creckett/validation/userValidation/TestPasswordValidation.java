@@ -10,8 +10,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import creckett.validation.UserValidator;
-import creckett.validation.exceptions.InvalidUserException;
+import com.fssa.creckett.validation.UserValidator;
+import com.fssa.creckett.validation.exceptions.InvalidUserException;
 
 class TestPasswordValidation {
 

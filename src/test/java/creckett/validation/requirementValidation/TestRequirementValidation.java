@@ -6,13 +6,14 @@ package creckett.validation.requirementValidation;
  */
 
 import static org.junit.Assert.assertFalse;
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import creckett.model.Requirement;
-import creckett.validation.RequirementValidator;
-import creckett.validation.exceptions.InvalidTurfException;
+import com.fssa.creckett.model.Requirement;
+import com.fssa.creckett.validation.RequirementValidator;
+import com.fssa.creckett.validation.exceptions.InvalidRequirementException;
 
 class TestRequirementValidation {
 
@@ -20,26 +21,24 @@ class TestRequirementValidation {
 	void testRequirementMessageSuccess() {
 
 		Requirement requirement = new Requirement("I want a batsman");
-		RequirementValidator validate = new RequirementValidator(requirement);
+		RequirementValidator validate = new RequirementValidator();
 
 		try {
-			assertTrue(validate.validateAll());
-		} catch (InvalidTurfException e) {
+			assertTrue(validate.validateRequirement(requirement));
+		} catch (InvalidRequirementException e) {
 			e.printStackTrace();
 		}
-
 	}
-	
-	
+
 	@Test
 	void testRequirementMessageFailure() {
 
 		Requirement requirement = new Requirement("I     ");
-		RequirementValidator validate = new RequirementValidator(requirement);
+		RequirementValidator validate = new RequirementValidator();
 
 		try {
-			assertFalse(validate.validateAll());
-		} catch (InvalidTurfException e) {
+			assertFalse(validate.validateRequirement(requirement));
+		} catch (InvalidRequirementException e) {
 			e.printStackTrace();
 		}
 
