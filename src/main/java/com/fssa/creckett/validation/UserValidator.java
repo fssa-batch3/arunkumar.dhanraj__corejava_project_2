@@ -31,11 +31,10 @@ public class UserValidator {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(name);
 
-		if (matcher.matches() && name != null) {
+		if (matcher.matches() && name != null)
 			return true;
-		} else {
-			throw new InvalidUserException("Invalid Username");
-		}
+
+		throw new InvalidUserException("Invalid Username");
 
 	}
 
@@ -56,7 +55,7 @@ public class UserValidator {
 //	validating password
 	public boolean validPassword(String password) throws InvalidUserException {
 
-		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&*()-_=+\\[\\]{}|;:',.<>?/]).{8,}$";
+		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(password);
 
@@ -76,8 +75,8 @@ public class UserValidator {
 
 		if (matcher.matches() && email != null)
 			return true;
-		else
-			throw new InvalidUserException("Invalid email Id");
+
+		throw new InvalidUserException("Invalid email Id");
 
 	}
 
@@ -85,22 +84,9 @@ public class UserValidator {
 	public boolean isEmailExists(String email) throws InvalidUserException {
 		UserDAO userDAO = new UserDAO();
 
-//		ArrayList<User> usersList = userDAO.regiteredUsersList();
-//		for (User user : usersList) {
-//			if (email.equals(user.getEmail())) {
-//				throw new InvalidUserException(email + " is already exists");
-//			}
-//		}
-//		return true;
 		try {
-			if (userDAO.selectByEmail(email)) {
-				System.out.println(email + " is already exists");
-				return false;
-			}
-
-			return true;
+			return userDAO.selectByEmail(email);
 		} catch (DAOException e) {
-			System.out.println(e.getMessage());
 			throw new InvalidUserException("Email already exists");
 		}
 
@@ -110,23 +96,12 @@ public class UserValidator {
 	public boolean isNumberExists(String number) throws InvalidUserException {
 		UserDAO userDAO = new UserDAO();
 
-//		ArrayList<User> usersList = userDAO.regiteredUsersList();
-//		for (User user : usersList) {
-//			if (number.equals(user.getPhonenumber())) {
-//				throw new InvalidUserException(number + " is already exists");
-//			}
-//		}
-//		return true;
-
 		try {
-			
-			if (userDAO.selectByNumber(number)) {
-				System.out.println(number + " is already exists");
-			}
-			
+
+			userDAO.selectByNumber(number);
+
 			return !userDAO.selectByNumber(number);
 		} catch (DAOException e) {
-			System.out.println(e.getMessage());
 			throw new InvalidUserException("Phonenumber already exists");
 		}
 

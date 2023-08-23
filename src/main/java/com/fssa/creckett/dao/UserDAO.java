@@ -7,17 +7,19 @@ package com.fssa.creckett.dao;
  */
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.fssa.creckett.dao.exceptions.DAOException;
 import com.fssa.creckett.model.User;
 import com.fssa.creckett.utils.ConnectionDb;
 
 public class UserDAO {
-
+	 
 //	Creating Statement and inserting the user's value
 	public boolean createUser(User user) throws DAOException {
 
@@ -31,7 +33,7 @@ public class UserDAO {
 			std.setString(4, user.getPhonenumber());
 
 			row = std.executeUpdate();
-			System.out.println("Rows affected: " + row);
+			System.err.println("Rows affected: " + row);
 
 		} catch (SQLException e) {
 			throw new DAOException("Error in inserting the user's value", e);
@@ -54,7 +56,7 @@ public class UserDAO {
 
 			row = std.executeUpdate();
 
-			System.out.println("Deleted row: " + row);
+			System.err.println("Deleted row: " + row);
 
 		} catch (SQLException e) {
 			throw new DAOException("Error in deleting the user", e);
@@ -65,7 +67,7 @@ public class UserDAO {
 	}
 
 //	Getting the register user's details
-	public ArrayList<User> regiteredUsersList() throws DAOException {
+	public List<User> regiteredUsersList() throws DAOException {
 
 		ArrayList<User> users = new ArrayList<>();
 		final String SELECTQUERY = "Select * from users";
