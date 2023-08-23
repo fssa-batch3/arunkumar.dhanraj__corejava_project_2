@@ -3,7 +3,7 @@
  
 ### [Milestones](https://github.com/fssa-batch3/sec_a_arunkumar.dhanraj__corejava_project_2/milestones)
 ### ER Diagram:
-###   [![HDDkCPf.png](https://iili.io/HDDkCPf.png)](https://freeimage.host/)
+###   [![HpUebLu.png](https://iili.io/HpUebLu.png)](https://freeimage.host/)
 
 ### Flow:
 
