@@ -26,14 +26,13 @@ public class UserDAO {
 		final String QUERY = "INSERT INTO users (name,email,password,phonenumber) VALUES (?,?,?,?)";
 		int row = 0;
 		try (PreparedStatement std = new ConnectionDb().connect().prepareStatement(QUERY)) {
-
+ 
 			std.setString(1, user.getName());
 			std.setString(2, user.getEmail());
 			std.setString(3, user.getPassword());
 			std.setString(4, user.getPhonenumber());
 
 			row = std.executeUpdate();
-			System.err.println("Rows affected: " + row);
 
 		} catch (SQLException e) {
 			throw new DAOException("Error in inserting the user's value", e);
@@ -56,7 +55,6 @@ public class UserDAO {
 
 			row = std.executeUpdate();
 
-			System.err.println("Deleted row: " + row);
 
 		} catch (SQLException e) {
 			throw new DAOException("Error in deleting the user", e);
