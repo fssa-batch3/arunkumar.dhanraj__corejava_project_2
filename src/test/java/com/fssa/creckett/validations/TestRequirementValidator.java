@@ -1,4 +1,4 @@
-package creckett.validation.requirementValidation;
+package com.fssa.creckett.validations;
 
 /**
  * @author ArunkumarDhanraj
@@ -15,7 +15,7 @@ import com.fssa.creckett.model.Requirement;
 import com.fssa.creckett.validation.RequirementValidator;
 import com.fssa.creckett.validation.exceptions.InvalidRequirementException;
 
-class TestRequirementValidation {
+class TestRequirementValidator {
 
 	@Test
 	void testRequirementMessageSuccess() {

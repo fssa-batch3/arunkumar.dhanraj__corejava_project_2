@@ -1,7 +1,9 @@
-package creckett.validation.turfValidation;
+package com.fssa.creckett.validations;
 
 import static org.junit.Assert.assertFalse;
+
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,13 +16,14 @@ class TestTurfValidator {
 	@Test
 	void testTurfImageAndDetailsSuccess() {
 
-		Turf turf = new Turf("https://www.example.com", System.nanoTime()+"Perungudi chennai");
+		Turf turf = new Turf("https://www.google.com/imgres?imgurl=https%3A%2F%2Fimg.freepik", " Perungudi chennai");
 		TurfValidator validate = new TurfValidator();
 
 		try {
 			assertTrue(validate.validateTurf(turf));
 		} catch (InvalidTurfException e) {
 			e.printStackTrace();
+			fail();
 		}
 
 	}
@@ -28,30 +31,31 @@ class TestTurfValidator {
 	@Test
 	void testTurfImageFailure() {
 
-		Turf turf = new Turf("www.example.com", "Chennai");
 		TurfValidator validate = new TurfValidator();
 
 		try {
-			assertFalse(validate.validateTurf(turf));
+			assertFalse(validate.validateUrl("www.example.com"));
 		} catch (InvalidTurfException e) {
 			e.printStackTrace();
-			
 		}
 
 	}
-	
+
 	@Test
 	void testTurfDetailsFailure() {
 
-		Turf turf = new Turf("https://www.example.com", "Chen");
 		TurfValidator validate = new TurfValidator();
 
 		try {
-			assertFalse(validate.validateTurf(turf));
+			assertFalse(validate.validateDetails("chen     "));
 		} catch (InvalidTurfException e) {
 			e.printStackTrace();
 		}
 
 	}
+
+	/**
+	 * To-do need to write test cases for the turf listing method
+	 */
 
 }

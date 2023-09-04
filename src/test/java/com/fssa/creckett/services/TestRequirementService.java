@@ -1,4 +1,4 @@
-package creckett.services;
+package com.fssa.creckett.services;
 
 /**
  * @author ArunkumarDhanraj
@@ -6,6 +6,7 @@ package creckett.services;
  */
 
 import static org.junit.Assert.assertFalse;
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import com.fssa.creckett.dao.RequirementDAO;
 import com.fssa.creckett.dao.exceptions.DAOException;
 import com.fssa.creckett.model.Requirement;
-import com.fssa.creckett.services.RequirementService;
 import com.fssa.creckett.services.exceptions.ServiceException;
 
 class TestRequirementService {

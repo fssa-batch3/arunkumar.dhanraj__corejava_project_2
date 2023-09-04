@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 select * from  users;
 
+delete from	 users;
+
 -- Turf 
 CREATE TABLE IF NOT EXISTS turf(
 turf_id int auto_increment, 
@@ -20,8 +22,10 @@ PRIMARY KEY(turf_id)
 );
 
 select * from  turf;
-delete from  turf;
+delete from turf where details="Chennai chennai";
+delete from turf ;
 
+INSERT INTO turf (image,details,created_user) VALUES ("asdasdawsd","casdadas",16)
 
 -- requirement tables 
 CREATE TABLE IF NOT EXISTS requirement(

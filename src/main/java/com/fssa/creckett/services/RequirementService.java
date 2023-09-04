@@ -13,15 +13,16 @@ public class RequirementService {
 
 		RequirementValidator validator = new RequirementValidator();
 		RequirementDAO requirementDAO = new RequirementDAO();
- 
+
 		try {
 			
-			return validator.validateRequirement(requirement) && requirementDAO.createRequirement(requirement);
-		
+			validator.validateRequirement(requirement);
+			return requirementDAO.createRequirement(requirement);
+
 		} catch (InvalidRequirementException | DAOException e) {
 			throw new ServiceException("Error in posting the requirement in service", e);
 		}
-		
+
 	}
 
 }

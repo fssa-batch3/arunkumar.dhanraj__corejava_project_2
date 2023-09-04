@@ -1,4 +1,4 @@
-package creckett.services;
+package com.fssa.creckett.services;
 
 /**
  * @author ArunkumarDhanraj
@@ -6,13 +6,13 @@ package creckett.services;
  */
 
 import static org.junit.Assert.assertFalse;
-
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
 import com.fssa.creckett.model.Turf;
-import com.fssa.creckett.services.TurfService;
+import com.fssa.creckett.model.User;
 import com.fssa.creckett.services.exceptions.ServiceException;
 
 class TestTurfService {
@@ -21,12 +21,19 @@ class TestTurfService {
 	void testHostTurfSuccess() {
 
 		Turf turf = new Turf("https://www.example.com", "Chennai chennai");
+
+		User user = new User();
+		user.setId(16);
+
+		turf.setCreatedBy(user);
+
 		TurfService host = new TurfService();
 
 		try {
 			assertTrue(host.hostTurf(turf));
 		} catch (ServiceException e) {
 			e.printStackTrace();
+			fail();
 		}
 	}
 
@@ -42,5 +49,9 @@ class TestTurfService {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * To-do Need to write test cases for turfList(), updateTurf(int turfId) & getTurfObject(int turfId)
+	 */
 
 }

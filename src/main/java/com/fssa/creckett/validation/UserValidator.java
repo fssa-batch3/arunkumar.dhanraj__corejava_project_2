@@ -1,12 +1,13 @@
 package com.fssa.creckett.validation;
 
+import java.util.List;
+
 /**
  * @author ArunkumarDhanraj
  *
  */
 
 import java.util.regex.Matcher;
-
 import java.util.regex.Pattern;
 
 import com.fssa.creckett.dao.UserDAO;
@@ -16,15 +17,27 @@ import com.fssa.creckett.validation.exceptions.InvalidUserException;
 
 public class UserValidator {
 
+	/**
+	 * Validating all the attributes
+	 * 
+	 * @param user
+	 * @return boolean
+	 * @throws InvalidUserException
+	 */
 	public boolean validateUser(User user) throws InvalidUserException {
 
 		return validName(user.getName()) && validPhoneNumber(user.getPhonenumber()) && validPassword(user.getPassword())
-				&& validEmail(user.getEmail()) && isEmailExists(user.getEmail())
-				&& isNumberExists(user.getPhonenumber());
+				&& validEmail(user.getEmail()) && isEmailExists(user.getEmail());
 
 	}
 
-//	validating username
+	/**
+	 * validating username
+	 * 
+	 * @param name
+	 * @return boolean
+	 * @throws InvalidUserException
+	 */
 	public boolean validName(String name) throws InvalidUserException {
 
 		String regex = "^[a-zA-Z]+$";
@@ -34,11 +47,17 @@ public class UserValidator {
 		if (matcher.matches() && name != null)
 			return true;
 
-		throw new InvalidUserException("Invalid Username");
+		throw new InvalidUserException("Invalid Username: Don't use special characters");
 
 	}
 
-//	validating phonenumber
+	/**
+	 * validating phonenumber
+	 * 
+	 * @param number
+	 * @return boolean
+	 * @throws InvalidUserException
+	 */
 	public boolean validPhoneNumber(String number) throws InvalidUserException {
 
 		String regex = "^[6-9]\\d{9}$";
@@ -48,25 +67,38 @@ public class UserValidator {
 		if (matcher.matches() && number != null)
 			return true;
 		else
-			throw new InvalidUserException("Invalid Phone number");
+			throw new InvalidUserException("Invalid Phone number: Phone number should be in 10 numbers");
 
 	}
 
-//	validating password
+	/**
+	 * validating password
+	 * 
+	 * @param password
+	 * @return
+	 * @throws InvalidUserException
+	 */
 	public boolean validPassword(String password) throws InvalidUserException {
 
-		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+		String regex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(password);
 
 		if (matcher.matches() && password != null)
 			return true;
 		else
-			throw new InvalidUserException("Invalid Password");
+			throw new InvalidUserException(
+					"Password must contain atleast 1 CAPITAL LETTER, small letter, special characters and numbers");
 
 	}
 
-//	validating email 
+	/**
+	 * validating email
+	 * 
+	 * @param email
+	 * @return boolean
+	 * @throws InvalidUserException
+	 */
 	public boolean validEmail(String email) throws InvalidUserException {
 
 		String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
@@ -76,34 +108,52 @@ public class UserValidator {
 		if (matcher.matches() && email != null)
 			return true;
 
-		throw new InvalidUserException("Invalid email Id");
+		throw new InvalidUserException("Invalid email");
 
 	}
 
-//	Checking whether the email already exists
+	/**
+	 * Checking whether the email already exists
+	 * 
+	 * @param email
+	 * @return boolean
+	 * @throws InvalidUserException
+	 */
 	public boolean isEmailExists(String email) throws InvalidUserException {
 		UserDAO userDAO = new UserDAO();
 
 		try {
-			return userDAO.selectByEmail(email);
+			if (userDAO.selectByEmail(email))
+				throw new InvalidUserException("Email is already registered");
+
+			return true;
 		} catch (DAOException e) {
-			throw new InvalidUserException("Email already exists");
+			throw new InvalidUserException("Error in selecting by email");
 		}
 
 	}
 
-//	Checking whether the phone number already exists
-	public boolean isNumberExists(String number) throws InvalidUserException {
-		UserDAO userDAO = new UserDAO();
+	/**
+	 * Validating the user's list
+	 * @param userList
+	 * @throws InvalidUserException
+	 */
+	public void validUsersList(List<User> userList) throws InvalidUserException {
 
-		try {
+		if (userList == null || userList.isEmpty())
+			throw new InvalidUserException("Noone registered");
 
-			userDAO.selectByNumber(number);
+	}
 
-			return !userDAO.selectByNumber(number);
-		} catch (DAOException e) {
-			throw new InvalidUserException("Phonenumber already exists");
-		}
+	/**
+	 * validating the logged user's details
+	 * @param user
+	 * @throws InvalidUserException
+	 */
+	public void validLoggedUser(User user) throws InvalidUserException {
+
+		if (user == null)
+			throw new InvalidUserException("Cannot get user's details");
 
 	}
 

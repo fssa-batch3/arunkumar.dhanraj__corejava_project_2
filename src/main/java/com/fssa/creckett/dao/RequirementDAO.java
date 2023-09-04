@@ -14,7 +14,7 @@ import java.util.List;
 
 import com.fssa.creckett.dao.exceptions.DAOException;
 import com.fssa.creckett.model.Requirement;
-import com.fssa.creckett.utils.ConnectionDb;
+import com.fssa.creckett.utils.ConnectionUtil;
 
 public class RequirementDAO {
 
@@ -23,7 +23,7 @@ public class RequirementDAO {
 
 		final String QUERY = "INSERT INTO requirement (message) VALUES (?)";
 
-		try (PreparedStatement pmt = new ConnectionDb().connect().prepareStatement(QUERY)) {
+		try (PreparedStatement pmt = new ConnectionUtil().connect().prepareStatement(QUERY)) {
 
 			pmt.setString(1, requirement.getMessage());
 
@@ -44,7 +44,7 @@ public class RequirementDAO {
 
 		final String QUERY = "SELECT * FROM requirement";
 
-		try (PreparedStatement std = new ConnectionDb().connect().prepareStatement(QUERY);
+		try (PreparedStatement std = new ConnectionUtil().connect().prepareStatement(QUERY);
 				ResultSet rs = std.executeQuery()) {
 
 			while (rs.next()) {
@@ -66,7 +66,7 @@ public class RequirementDAO {
 
 		final String QUERY = "DELETE FROM requirement WHERE message=?";
 
-		try (PreparedStatement pmt = new ConnectionDb().connect().prepareStatement(QUERY)) {
+		try (PreparedStatement pmt = new ConnectionUtil().connect().prepareStatement(QUERY)) {
 
 			pmt.setString(1, message);
 

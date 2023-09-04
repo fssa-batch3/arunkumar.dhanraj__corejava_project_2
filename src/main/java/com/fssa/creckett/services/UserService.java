@@ -1,5 +1,7 @@
 package com.fssa.creckett.services;
 
+import java.util.List;
+
 import com.fssa.creckett.dao.UserDAO;
 import com.fssa.creckett.dao.exceptions.DAOException;
 import com.fssa.creckett.model.User;
@@ -9,22 +11,34 @@ import com.fssa.creckett.validation.exceptions.InvalidUserException;
 
 public class UserService {
 
-//	Registration for users
+	/**
+	 * Registration for users
+	 * 
+	 * @param user
+	 * @return boolean
+	 * @throws ServiceException
+	 */
 	public boolean registerUser(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		UserValidator validator = new UserValidator();
 
 		try {
-
-			return validator.validateUser(user) && userDAO.createUser(user);
+			validator.validateUser(user);
+			return userDAO.createUser(user);
 
 		} catch (DAOException | InvalidUserException e) {
-			throw new ServiceException("Error while creating user in service", e);
+			throw new ServiceException(e.getMessage(), e);
 		}
 
 	}
 
-//	Checking Login user
+	/**
+	 *  Service for Login user
+	 * 
+	 * @param user
+	 * @return
+	 * @throws ServiceException
+	 */
 	public boolean loginUser(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		UserValidator validator = new UserValidator();
@@ -36,9 +50,50 @@ public class UserService {
 			return userDAO.selectForLogin(user);
 
 		} catch (InvalidUserException | DAOException e) {
-			throw new ServiceException("Error in logging in", e);
+			throw new ServiceException(e.getMessage(), e);
 		}
 
+	}
+	
+	/**
+	 * Getting the list of users
+	 * @return List<User>
+	 * @throws ServiceException
+	 */
+
+	public List<User> listUsers() throws ServiceException {
+
+		UserDAO userDAO = new UserDAO();
+		UserValidator validator = new UserValidator();
+
+		List<User> userList = null;
+		try {
+			userList = userDAO.regiteredUsersList();
+			validator.validUsersList(userList);
+		} catch (DAOException | InvalidUserException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+		return userList;
+
+	}
+
+	/**
+	 * Getting the logged user's details
+	 * @param email
+	 * @return User
+	 * @throws ServiceException
+	 */
+	public User getUser(String email) throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		UserValidator validator = new UserValidator();
+
+		try {
+			User loggedUser = userDAO.getUserByEmail(email);
+			validator.validLoggedUser(loggedUser);
+			return loggedUser;
+		} catch (DAOException | InvalidUserException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
 }
