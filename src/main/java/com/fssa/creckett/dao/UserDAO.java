@@ -196,7 +196,7 @@ public class UserDAO {
 
 				}
 
-			} 
+			}
 
 		} catch (SQLException e) {
 			throw new DAOException("Cannot get user's details", e);
@@ -204,15 +204,5 @@ public class UserDAO {
 		return null;
 
 	}
-	
-	
-	public static void main(String[] args) {
-		try {
-			User user = new UserDAO().getUserByEmail("arun19ict@gmail.com");
-			System.out.println(user.toString());
-			System.out.println(user.getId());
-		} catch (DAOException e) {
-			e.printStackTrace();
-		}
-	}
+
 }

@@ -1,9 +1,10 @@
 package com.fssa.creckett.utils;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.fssa.creckett.dao.exceptions.DAOException;
 
 /**
  * @author ArunkumarDhanraj
@@ -16,7 +17,7 @@ public class ConnectionUtil {
 	 * 
 	 * @return Connection
 	 */
-	public Connection connect() {
+	public Connection connect() throws DAOException {
 
 		final String DBURL = System.getenv("dbURL");
 		final String DBUSER = System.getenv("dbUser");
@@ -26,11 +27,9 @@ public class ConnectionUtil {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(DBURL, DBUSER, DBPASSWORD);
 		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Unable to connect database", e);
+			throw new DAOException("Unable to connect database", e);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Database driver class not found", e);
+			throw new DAOException("Database driver class not found", e);
 		}
 
 	}

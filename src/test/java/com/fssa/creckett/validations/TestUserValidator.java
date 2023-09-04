@@ -13,7 +13,7 @@ import com.fssa.creckett.validation.exceptions.InvalidUserException;
  * @author ArunkumarDhanraj
  *
  */
-public class TestUserValidator {
+class TestUserValidator {
 
 	/**
 	 * Testing the Username validation
@@ -31,30 +31,19 @@ public class TestUserValidator {
 	}
 
 	@Test
-	void testInvalidUsernameStartingWithNumber() {
+	void testInvalidUsername() {
 		UserValidator userValidator = new UserValidator();
 		try {
+
+//			Starting with Number
 			assertFalse(userValidator.validName("1Arun"));
-		} catch (InvalidUserException e) {
-			e.printStackTrace();
-		}
-	}
 
-	@Test
-	void testInvalidUsernameStartingWithSpecialCharacter() {
-		UserValidator userValidator = new UserValidator();
-		try {
+//			Starting with Special Character
 			assertFalse(userValidator.validName("@Arun"));
-		} catch (InvalidUserException e) {
-			e.printStackTrace();
-		}
-	}
 
-	@Test
-	void testInvalidUsernameWithSpaces() {
-		UserValidator userValidator = new UserValidator();
-		try {
+//			Including the spaces
 			assertFalse(userValidator.validName("Arun kumar"));
+
 		} catch (InvalidUserException e) {
 			e.printStackTrace();
 		}
