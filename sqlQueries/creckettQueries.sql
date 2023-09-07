@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 select * from  users;
 
-delete from	 users;
+-- delete from	 users where name="vinit";
 
 -- Turf 
 CREATE TABLE IF NOT EXISTS turf(
@@ -22,10 +22,11 @@ PRIMARY KEY(turf_id)
 );
 
 select * from  turf;
-delete from turf where details="Chennai chennai";
-delete from turf ;
 
-INSERT INTO turf (image,details,created_user) VALUES ("asdasdawsd","casdadas",16)
+delete from turf where details="Chennai chennai";
+-- delete from turf ;
+
+INSERT INTO turf (image,details,created_user) VALUES ("asdasdawsd","casdadas",16);
 
 -- requirement tables 
 CREATE TABLE IF NOT EXISTS requirement(
@@ -36,4 +37,4 @@ PRIMARY KEY(requirement_id )
 
 select * from requirement;
 
-delete from requirement;
+-- delete from requirement;

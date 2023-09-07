@@ -33,7 +33,7 @@ public class UserService {
 	}
 
 	/**
-	 *  Service for Login user
+	 * Service for Login user
 	 * 
 	 * @param user
 	 * @return
@@ -54,9 +54,10 @@ public class UserService {
 		}
 
 	}
-	
+
 	/**
 	 * Getting the list of users
+	 * 
 	 * @return List<User>
 	 * @throws ServiceException
 	 */
@@ -79,6 +80,7 @@ public class UserService {
 
 	/**
 	 * Getting the logged user's details
+	 * 
 	 * @param email
 	 * @return User
 	 * @throws ServiceException
@@ -94,6 +96,18 @@ public class UserService {
 		} catch (DAOException | InvalidUserException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
+	}
+
+	public boolean deleteUserByemail(String email) throws ServiceException {
+
+		UserDAO userDAO = new UserDAO();
+
+		try {
+			return userDAO.deleteUser(email);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+
 	}
 
 }

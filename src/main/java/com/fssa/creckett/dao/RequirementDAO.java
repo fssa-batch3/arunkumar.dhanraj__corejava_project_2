@@ -17,6 +17,7 @@ import com.fssa.creckett.model.Requirement;
 import com.fssa.creckett.utils.ConnectionUtil;
 
 public class RequirementDAO {
+	
 
 //	Inserting the requirements details in the DB
 	public boolean createRequirement(Requirement requirement) throws DAOException {

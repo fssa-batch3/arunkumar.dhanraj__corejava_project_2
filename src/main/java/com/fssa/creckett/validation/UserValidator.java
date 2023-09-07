@@ -40,14 +40,14 @@ public class UserValidator {
 	 */
 	public boolean validName(String name) throws InvalidUserException {
 
-		String regex = "^[a-zA-Z]+$";
+		String regex = "^[a-zA-Z]{3,}$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(name);
 
 		if (matcher.matches() && name != null)
 			return true;
 
-		throw new InvalidUserException("Invalid Username: Don't use special characters");
+		throw new InvalidUserException("Invalid Username: Username Should be greater than 3 letters and without special characters");
 
 	}
 
