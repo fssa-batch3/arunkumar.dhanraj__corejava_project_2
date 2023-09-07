@@ -79,7 +79,7 @@ class TestTurfService {
 
 		TurfService service = new TurfService();
 
-		Turf updateTurf = new Turf(70,
+		Turf updateTurf = new Turf(86,
 				"https://img.freepik.com/premium-photo/picturesque-cricket-stadium-with-lush-green-field-vibrant-crowd-spectators_75778-5540.jpg?w=2000",
 				"Fresh Turf, Perungudi, Chennai");
 

@@ -30,7 +30,7 @@ public class TurfDAO {
 	public boolean createTurf(Turf turf) throws DAOException {
 
 		final String QUERY = "INSERT INTO turf (image,details,created_user) VALUES (?,?,?)";
-
+ 
 		try (Connection connection = new ConnectionUtil().connect();
 				PreparedStatement pmt = connection.prepareStatement(QUERY)) {
 
