@@ -1,6 +1,11 @@
 # Creckett 
  
 ### [Milestones](https://github.com/fssa-batch3/sec_a_arunkumar.dhanraj__corejava_project_2/milestones)
+
+
+### [Java Docs](https://fssa-batch3.github.io/sec_a_arunkumar.dhanraj__corejava_project_2/)
+
+
 ### ER Diagram:
 ###   [![HpUebLu.png](https://iili.io/HpUebLu.png)](https://freeimage.host/)
 
