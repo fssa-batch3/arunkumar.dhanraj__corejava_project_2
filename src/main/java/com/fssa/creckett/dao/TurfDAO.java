@@ -91,7 +91,7 @@ public class TurfDAO {
 	}
 
 	/**
-	 * update the turf by details
+	 * update the turf by id
 	 * 
 	 * @param turf
 	 * @return boolean
