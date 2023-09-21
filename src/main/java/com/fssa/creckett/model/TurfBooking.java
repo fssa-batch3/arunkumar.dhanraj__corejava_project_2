@@ -15,6 +15,11 @@ public class TurfBooking {
 	private LocalDate date;
 	private String time;
 
+//	Default constructor
+	public TurfBooking() {
+
+	}
+
 //	Main constructor
 	public TurfBooking(int bookingId, Turf turf, User user, LocalDate date, String time) {
 		this.bookingId = bookingId;

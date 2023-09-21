@@ -1,4 +1,4 @@
-package com.fssa.creckett.validations;
+package com.fssa.creckett.validation;
 
 /**
  * @author ArunkumarDhanraj
@@ -7,12 +7,12 @@ package com.fssa.creckett.validations;
 
 import static org.junit.Assert.assertFalse;
 
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import com.fssa.creckett.model.Requirement;
-import com.fssa.creckett.validation.RequirementValidator;
 import com.fssa.creckett.validation.exceptions.InvalidRequirementException;
 
 class TestRequirementValidator {

@@ -36,12 +36,12 @@ select * from requirement;
 
 -- turf booking 
 CREATE TABLE `arunkumar_dhanraj_corejava_project`.`turf_booking` (
-  `booking_id` INT NOT NULL,
+  `booking_id` INT NOT NULL ,
   `turf_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `date` DATE NOT NULL,
   `time` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`booking_id`),
+  PRIMARY KEY (`booking_id`) , 
   UNIQUE INDEX `booking_id_UNIQUE` (`booking_id` ASC) VISIBLE,
   INDEX `FK_turf_id_idx` (`turf_id` ASC) VISIBLE,
   INDEX `FK_user_id_idx` (`user_id` ASC) VISIBLE,
@@ -55,3 +55,7 @@ CREATE TABLE `arunkumar_dhanraj_corejava_project`.`turf_booking` (
     REFERENCES `arunkumar_dhanraj_corejava_project`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+    select * from turf_booking;
+    
+    insert into turf_booking (turf_id,user_id,date,time) values (102,90,CURDATE(),"08AM-09AM");

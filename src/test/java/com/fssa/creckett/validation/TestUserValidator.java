@@ -1,12 +1,12 @@
-package com.fssa.creckett.validations;
+package com.fssa.creckett.validation;
 
 import static org.junit.Assert.assertFalse;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import com.fssa.creckett.validation.UserValidator;
 import com.fssa.creckett.validation.exceptions.InvalidUserException;
 
 /**
