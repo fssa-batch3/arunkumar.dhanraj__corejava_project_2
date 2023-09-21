@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 select * from  users;
 
--- delete from	 users where name="vinit";
+delete from users where name="Muthu";
+
 
 -- Turf 
 CREATE TABLE IF NOT EXISTS turf(
@@ -22,11 +23,7 @@ PRIMARY KEY(turf_id)
 );
 
 select * from  turf;
-
 delete from turf where details="Chennai chennai";
--- delete from turf ;
-
-INSERT INTO turf (image,details,created_user) VALUES ("asdasdawsd","casdadas",16);
 
 -- requirement tables 
 CREATE TABLE IF NOT EXISTS requirement(
@@ -37,4 +34,24 @@ PRIMARY KEY(requirement_id )
 
 select * from requirement;
 
--- delete from requirement;
+-- turf booking 
+CREATE TABLE `arunkumar_dhanraj_corejava_project`.`turf_booking` (
+  `booking_id` INT NOT NULL,
+  `turf_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `date` DATE NOT NULL,
+  `time` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`booking_id`),
+  UNIQUE INDEX `booking_id_UNIQUE` (`booking_id` ASC) VISIBLE,
+  INDEX `FK_turf_id_idx` (`turf_id` ASC) VISIBLE,
+  INDEX `FK_user_id_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `FK_turf_id`
+    FOREIGN KEY (`turf_id`)
+    REFERENCES `arunkumar_dhanraj_corejava_project`.`turf` (`turf_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_USER_TURF_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `arunkumar_dhanraj_corejava_project`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

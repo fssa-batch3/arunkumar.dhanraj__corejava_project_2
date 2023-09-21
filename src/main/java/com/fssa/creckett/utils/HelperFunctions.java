@@ -1,5 +1,6 @@
 package com.fssa.creckett.utils;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,5 +38,38 @@ public class HelperFunctions {
 		return !message.trim().isEmpty() && message.trim().length() > 5;
 
 	}
+
+	/**
+	 * Validating the date
+	 * 
+	 * @param date
+	 * @return boolean
+	 */
+	public boolean validDate(LocalDate date) {
+		if (date == null) {
+			return false;
+		}
+
+		LocalDate today = LocalDate.now();
+		return !date.isBefore(today); // Allow today and future dates
+	}
+	
+	
+	
+	/**
+	 * Validating the time
+	 * @param time
+	 * @return boolean
+	 */
+    public boolean validTime(String time) {
+    	
+        String regex = "^(0[1-9]|1[0-2])(AM|PM) - (0[1-9]|1[0-2])(AM|PM)$";
+        
+        Pattern pattern = Pattern.compile(regex);
+        
+        Matcher matcher = pattern.matcher(time);
+        
+        return matcher.matches();
+    }
 
 }
