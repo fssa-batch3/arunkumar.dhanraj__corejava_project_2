@@ -53,23 +53,22 @@ public class HelperFunctions {
 		LocalDate today = LocalDate.now();
 		return !date.isBefore(today); // Allow today and future dates
 	}
-	
-	
-	
+
 	/**
 	 * Validating the time
+	 * 
 	 * @param time
 	 * @return boolean
 	 */
-    public boolean validTime(String time) {
-    	
-        String regex = "^(0[1-9]|1[0-2])(AM|PM) - (0[1-9]|1[0-2])(AM|PM)$";
-        
-        Pattern pattern = Pattern.compile(regex);
-        
-        Matcher matcher = pattern.matcher(time);
-        
-        return matcher.matches();
-    }
+	public boolean validTime(String time) {
+
+		String regex = "^(?:[1-9]|1[0-2])(AM|PM) - (?:[1-9]|1[0-2])(AM|PM)$";
+
+		Pattern pattern = Pattern.compile(regex);
+
+		Matcher matcher = pattern.matcher(time);
+
+		return matcher.matches();
+	}
 
 }
