@@ -19,6 +19,9 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	private String phonenumber;
+	private String bloodGroup;
+	private String availability;
+	private String category;
 
 	/**
 	 * constructor for registration
@@ -114,15 +117,41 @@ public class User implements Serializable {
 		this.phonenumber = phonenumber;
 	}
 
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+
+	public String getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(String availability) {
+		this.availability = availability;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	/**
 	 * toString method for the user
 	 * 
 	 * @return String
 	 */
+
 	@Override
 	public String toString() {
-		return "User [ name = " + name + ", email = " + email + ", password = " + password + ", phonenumber = "
-				+ phonenumber + " ]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", phonenumber="
+				+ phonenumber + ", bloodGroup=" + bloodGroup + ", availability=" + availability + ", category="
+				+ category + "]";
 	}
 
 }

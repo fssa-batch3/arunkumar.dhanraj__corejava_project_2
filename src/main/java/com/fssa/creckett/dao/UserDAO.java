@@ -175,7 +175,7 @@ public class UserDAO {
 
 	public User getUserByEmail(String email) throws DAOException {
 
-		final String SELECTQUERY = "SELECT * FROM users WHERE email = ?";
+		final String SELECTQUERY = "SELECT id,name,email,phonenumber,blood_group,availability,category FROM users WHERE email = ?";
 
 		try (Connection connection = new ConnectionUtil().connect();
 				PreparedStatement pstmt = connection.prepareStatement(SELECTQUERY)) {
@@ -189,10 +189,18 @@ public class UserDAO {
 					int id = rs.getInt("id");
 					String name = rs.getString("name");
 					String loggedEmail = rs.getString("email");
-					String password = rs.getString("password");
+					String password = "";
 					String phonenumber = rs.getString("phonenumber");
+					String blood = rs.getString("blood_group");
+					String avail = rs.getString("availability");
+					String category = rs.getString("category");
 
-					return new User(id, name, loggedEmail, password, phonenumber);
+					User user = new User(id, name, loggedEmail, password, phonenumber);
+					user.setBloodGroup(blood);
+					user.setAvailability(avail);
+					user.setCategory(category);
+
+					return user;
 
 				}
 
@@ -202,6 +210,37 @@ public class UserDAO {
 			throw new DAOException("Cannot get user's details", e);
 		}
 		return null;
+
+	}
+
+	/**
+	 * To update the User
+	 * 
+	 * @param user
+	 * @return boolean
+	 * @throws DAOException
+	 */
+	public boolean updateUser(User user) throws DAOException {
+
+		final String UPDATEQUERY = "UPDATE users SET name = ?, phonenumber = ?, blood_group = ?, availability = ?, category = ? WHERE id = ?";
+
+		try (Connection connection = new ConnectionUtil().connect();
+				PreparedStatement pstmt = connection.prepareStatement(UPDATEQUERY)) {
+
+			pstmt.setString(1, user.getName());
+			pstmt.setString(2, user.getPhonenumber());
+			pstmt.setString(3, user.getBloodGroup());
+			pstmt.setString(4, user.getAvailability());
+			pstmt.setString(5, user.getCategory());
+			pstmt.setInt(6, user.getId());
+
+			int row = pstmt.executeUpdate();
+
+			return row > 0;
+
+		} catch (SQLException e) {
+			throw new DAOException("Cannot update now", e);
+		}
 
 	}
 

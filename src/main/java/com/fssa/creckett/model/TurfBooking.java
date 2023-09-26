@@ -13,6 +13,7 @@ public class TurfBooking {
 	private Turf turf;
 	private User user;
 	private LocalDate date;
+	private String strDate;
 	private String time;
 
 //	Default constructor
@@ -20,7 +21,7 @@ public class TurfBooking {
 
 	}
 
-//	Main constructor
+//	 constructor
 	public TurfBooking(int bookingId, Turf turf, User user, LocalDate date, String time) {
 		this.bookingId = bookingId;
 		this.turf = turf;
@@ -77,11 +78,21 @@ public class TurfBooking {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	
+	public String getStrDate() {
+		return strDate;
+	}
+
+	public void setStrDate(String strDate) {
+		this.strDate = strDate;
+	}
 
 	@Override
 	public String toString() {
 		return "TurfBooking [bookingId=" + bookingId + ", turf=" + turf + ", user=" + user + ", date=" + date
-				+ ", time=" + time + "]";
+				+ ", strDate=" + strDate + ", time=" + time + "]";
 	}
+
+	
 
 }

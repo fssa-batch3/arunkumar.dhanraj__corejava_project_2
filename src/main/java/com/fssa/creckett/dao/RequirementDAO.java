@@ -1,12 +1,13 @@
 package com.fssa.creckett.dao;
 
+import java.sql.Connection;
+
 /**
  * @author ArunkumarDhanraj
  *
  */
 
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,19 +15,27 @@ import java.util.List;
 
 import com.fssa.creckett.dao.exceptions.DAOException;
 import com.fssa.creckett.model.Requirement;
+import com.fssa.creckett.model.User;
 import com.fssa.creckett.utils.ConnectionUtil;
 
 public class RequirementDAO {
-	
 
-//	Inserting the requirements details in the DB
+	/**
+	 * Inserting the requirements details in the DB
+	 * 
+	 * @param requirement
+	 * @return boolean
+	 * @throws DAOException
+	 */
 	public boolean createRequirement(Requirement requirement) throws DAOException {
 
-		final String QUERY = "INSERT INTO requirement (message) VALUES (?)";
+		final String QUERY = "INSERT INTO requirement (message,posted_by) VALUES (?,?)";
 
-		try (PreparedStatement pmt = new ConnectionUtil().connect().prepareStatement(QUERY)) {
+		try (Connection connect = new ConnectionUtil().connect();
+				PreparedStatement pmt = connect.prepareStatement(QUERY)) {
 
 			pmt.setString(1, requirement.getMessage());
+			pmt.setInt(2, requirement.getPostedBy().getId());
 
 			int row = pmt.executeUpdate();
 
@@ -38,19 +47,36 @@ public class RequirementDAO {
 
 	}
 
-//	get all requirement list by message
+	/**
+	 * get all requirement list by message
+	 * 
+	 * @return List<Requirement>
+	 * @throws DAOException
+	 */
 	public List<Requirement> getAllRequirementList() throws DAOException {
 
-		ArrayList<Requirement> list = new ArrayList<Requirement>();
+		List<Requirement> list = new ArrayList<Requirement>();
 
-		final String QUERY = "SELECT * FROM requirement";
+		final String QUERY = "SELECT " + "u.name, " + "u.email, " + "u.phonenumber, " + "req.requirement_id, "
+				+ "req.message, " + "req.posted_by " + "FROM requirement AS req "
+				+ "INNER JOIN users AS u ON req.posted_by = u.id;";
 
-		try (PreparedStatement std = new ConnectionUtil().connect().prepareStatement(QUERY);
+		try (Connection connect = new ConnectionUtil().connect();
+				PreparedStatement std = connect.prepareStatement(QUERY);
 				ResultSet rs = std.executeQuery()) {
 
 			while (rs.next()) {
 
-				list.add(new Requirement(rs.getString("message")));
+				int reqId = rs.getInt("requirement_id");
+				String message = rs.getString("message");
+
+				User postedUser = new User();
+				postedUser.setId(rs.getInt("posted_by"));
+				postedUser.setName(rs.getString("name"));
+				postedUser.setEmail(rs.getString("email"));
+				postedUser.setPhonenumber(rs.getString("phonenumber"));
+
+				list.add(new Requirement(reqId, message, postedUser));
 
 			}
 
@@ -67,7 +93,8 @@ public class RequirementDAO {
 
 		final String QUERY = "DELETE FROM requirement WHERE message=?";
 
-		try (PreparedStatement pmt = new ConnectionUtil().connect().prepareStatement(QUERY)) {
+		try (Connection connect = new ConnectionUtil().connect();
+				PreparedStatement pmt = connect.prepareStatement(QUERY)) {
 
 			pmt.setString(1, message);
 

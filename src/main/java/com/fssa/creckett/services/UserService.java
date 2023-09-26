@@ -110,4 +110,20 @@ public class UserService {
 
 	}
 
+	public boolean updateUserByID(User user) throws ServiceException {
+
+		UserDAO userDAO = new UserDAO();
+		UserValidator validator = new UserValidator();
+
+		try {
+
+			validator.validPhoneNumber(user.getPhonenumber());
+
+			return userDAO.updateUser(user);
+		} catch (DAOException | InvalidUserException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+
+	}
+
 }

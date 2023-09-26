@@ -10,25 +10,32 @@ public class Requirement {
 	// Attributes for requirement
 	private int reqId;
 	private String message;
+	private User postedBy;
 
-//	default constrctor
+// default constructor
 	public Requirement() {
 
 	}
-
-//	Main constrctor
+	
+//	Message constructor
 	public Requirement(String message) {
 		this.message = message;
 	}
 
-//	constrctor for update
-	public Requirement(int reqId, String message) {
-		this.reqId = reqId;
+//	Main constructor
+	public Requirement(String message,User postedBy) {
 		this.message = message;
+		this.postedBy = postedBy;
 	}
 
+//	constructor for update
+	public Requirement(int reqId, String message,User postedBy) {
+		this.reqId = reqId;
+		this.message = message;
+		this.postedBy = postedBy;
+	}
 
-	//	getters and setters 
+	// getters and setters
 	public int getReqId() {
 		return reqId;
 	}
@@ -44,10 +51,18 @@ public class Requirement {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
+	public User getPostedBy() {
+		return postedBy;
+	}
+
+	public void setPostedBy(User postedBy) {
+		this.postedBy = postedBy;
+	}
+
 	@Override
 	public String toString() {
-		return "Requirement [reqId=" + reqId + ", message=" + message + "]";
+		return "Requirement [reqId=" + reqId + ", message=" + message + ", postedBy=" + postedBy + "]";
 	}
 
 }

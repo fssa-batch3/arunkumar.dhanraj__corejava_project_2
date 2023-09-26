@@ -85,6 +85,8 @@ public class Turf {
 		this.createdBy = createdBy;
 	}
 
+
+
 	/**
 	 * toString method for the turf
 	 * 
@@ -92,7 +94,9 @@ public class Turf {
 	 */
 	@Override
 	public String toString() {
-		return "Turf [turfId=" + turfId + ", image=" + image + ", message=" + message + "]";
+		return "Turf [turfId=" + turfId + ", image=" + image + ", message=" + message + ", createdBy=" + createdBy
+				+ "]";
 	}
+
 
 }
