@@ -70,7 +70,6 @@ public class TurfBookingService {
 	public TurfBooking getTurfBooking(int turfId) throws ServiceException {
 
 		TurfBookingDAO bookingDAO = new TurfBookingDAO();
-//		TurfBookingValidator validator = new TurfBookingValidator();
 
 		try {
 			return bookingDAO.getTurfBookingById(turfId);
