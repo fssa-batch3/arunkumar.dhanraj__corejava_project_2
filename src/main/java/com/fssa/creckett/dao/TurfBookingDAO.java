@@ -99,10 +99,8 @@ public class TurfBookingDAO {
 
 		TurfBooking turfBooking = new TurfBooking();
 
-		final String SELECTQUERY = "SELECT " + "tb.booking_id, " + "tb.date, " + "tb.time, " + "t.image, "
-				+ "t.details, " + "t.created_user, " + "u.id, " + "u.name, " + "u.email, " + "u.phonenumber "
-				+ "FROM turf_booking AS tb " + "INNER JOIN turf AS t ON tb.turf_id = t.turf_id "
-				+ "INNER JOIN users AS u ON u.id = t.created_user " + "WHERE t.turf_id = ?";
+		final String SELECTQUERY = "SELECT t.image, t.details, t.created_user, u.id, u.name, u.email, u.phonenumber "
+				+ "FROM turf t " + "INNER JOIN users u ON u.id = t.created_user " + "WHERE t.turf_id = ?";
 
 		try (Connection connect = new ConnectionUtil().connect();
 				PreparedStatement pst = connect.prepareStatement(SELECTQUERY);) {
@@ -124,7 +122,6 @@ public class TurfBookingDAO {
 					turf.setCreatedBy(user);
 
 					turfBooking.setTurf(turf);
-					
 
 				}
 
@@ -198,7 +195,5 @@ public class TurfBookingDAO {
 		}
 
 	}
-
-
 
 }

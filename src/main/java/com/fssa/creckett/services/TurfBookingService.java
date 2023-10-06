@@ -40,13 +40,14 @@ public class TurfBookingService {
 
 	/**
 	 * Getting the booked list of time for the turf by date
+	 * 
 	 * @param turfId
 	 * @param date
 	 * @return List<String>
 	 * @throws ServiceException
 	 */
 	public List<String> getTimeByDate(int turfId, String date) throws ServiceException {
-		
+
 		TurfBookingDAO bookingDAO = new TurfBookingDAO();
 
 		try {
@@ -58,44 +59,42 @@ public class TurfBookingService {
 		}
 
 	}
-	
-	
+
 	/**
 	 * Getting the turf and turf owner details by turf id
+	 * 
 	 * @param turfId
 	 * @return TurfBooking
 	 * @throws ServiceException
 	 */
 	public TurfBooking getTurfBooking(int turfId) throws ServiceException {
-		
+
 		TurfBookingDAO bookingDAO = new TurfBookingDAO();
-		TurfBookingValidator validator = new TurfBookingValidator();
-		
+//		TurfBookingValidator validator = new TurfBookingValidator();
+
 		try {
-			TurfBooking bookingDetails = bookingDAO.getTurfBookingById(turfId);
-			validator.validateTurfBookingObject(bookingDetails);
-			
-			return bookingDetails;
-		} catch (DAOException | InvalidTurfException e) {
-			throw new ServiceException(e.getMessage(),e);
+			return bookingDAO.getTurfBookingById(turfId);
+
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
 		}
 	}
-	
-	public List<TurfBooking> turfBookingsList(int userId)throws ServiceException{
-		
+
+	public List<TurfBooking> turfBookingsList(int userId) throws ServiceException {
+
 		TurfBookingDAO bookingDAO = new TurfBookingDAO();
 		TurfBookingValidator validator = new TurfBookingValidator();
-		
+
 		try {
-			List<TurfBooking> bookingsList =  bookingDAO.getAllTurfBookingByUserId(userId);
-			
+			List<TurfBooking> bookingsList = bookingDAO.getAllTurfBookingByUserId(userId);
+
 			validator.validateBookings(bookingsList);
-			
+
 			return bookingsList;
 		} catch (DAOException | InvalidTurfException e) {
-			throw new ServiceException(e.getMessage(),e);
+			throw new ServiceException(e.getMessage(), e);
 		}
-		
+
 	}
 
 }
