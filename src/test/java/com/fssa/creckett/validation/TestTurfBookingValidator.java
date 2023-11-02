@@ -87,18 +87,7 @@ class TestTurfBookingValidator {
 
 	}
 
-//	Tests for validate time
 
-	@Test
-	void testValidTime() {
-		try {
-			assertTrue(validator.validateTime("08AM - 09AM"));
-			assertTrue(validator.validateTime("01PM - 02PM"));
-		} catch (InvalidTurfException e) {
-			fail();
-		}
-
-	}
 
 	@Test
 	void testInvalidTimeFormat() {

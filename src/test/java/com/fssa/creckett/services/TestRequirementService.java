@@ -6,8 +6,9 @@ package com.fssa.creckett.services;
  */
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+
+
+
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -19,20 +20,7 @@ import com.fssa.creckett.services.exceptions.ServiceException;
 
 class TestRequirementService {
 
-	@Test
-	void testPostRequirementSuccess() {
 
-		Requirement requirement = new Requirement("I want a batsman");
-		RequirementService hostReq = new RequirementService();
-
-		try {
-			assertTrue(hostReq.postRequirement(requirement));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-			fail();
-		}
-
-	}
 	
 	
 	

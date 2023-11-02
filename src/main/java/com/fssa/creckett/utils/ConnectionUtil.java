@@ -19,9 +19,9 @@ public class ConnectionUtil {
 	 */
 	public Connection connect() throws DAOException {
 
-		final String DBURL = System.getenv("DATABASE_HOST");
-		final String DBUSER = System.getenv("DATABASE_USERNAME");
-		final String DBPASSWORD = System.getenv("DATABASE_PASSWORD");
+		final String DBURL = System.getenv("dbURL");
+		final String DBUSER = System.getenv("dbUser");
+		final String DBPASSWORD = System.getenv("dbPassword");
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

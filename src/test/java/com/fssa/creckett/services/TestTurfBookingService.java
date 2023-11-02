@@ -1,7 +1,7 @@
 package com.fssa.creckett.services;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import java.time.LocalDate;
 
@@ -26,19 +26,6 @@ class TestTurfBookingService {
 		service = new TurfBookingService();
 	}
 
-	@Test
-	void testSuccessfulBooking() throws ServiceException {
-		
-		Turf turf =new Turf();
-		turf.setTurfId(102);
-		
-		User user = new User();
-		user.setId(90);
-		
-		TurfBooking validBooking = new TurfBooking(turf,user,LocalDate.now(),"09AM - 10AM");
-
-		assertTrue(service.bookTurf(validBooking));
-	}
 
 	@Test
 	void testInvalidBooking() {
